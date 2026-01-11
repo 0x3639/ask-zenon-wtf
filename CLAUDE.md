@@ -4,58 +4,76 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Purpose
 
-This is a **documentation-only repository** containing technical research papers, specifications, and architectural documents for **Zenon: The Network of Momentum (NoM)**—a distributed ledger protocol based on proof-of-momentum consensus.
+This repository powers **ask.zenon.wtf** - an AI-powered Q&A interface for Zenon Network of Momentum design research. It uses OpenAI embeddings and GPT-4o to answer questions about the research documentation.
 
-There is no source code, build system, or testing infrastructure. All documentation files are in the `context/` folder.
+## Tech Stack
 
-## Document Hierarchy
+- **Backend:** Python 3.11, FastAPI, OpenAI API
+- **Frontend:** Static HTML/CSS/JS (ChatGPT-style interface)
+- **Infrastructure:** Docker, Redis (caching/rate limiting), Caddy (reverse proxy)
+- **Based on:** [kaine-ai](https://github.com/0x3639/kaine-ai)
 
-All documents are located in `context/`.
+## Project Structure
+
+```
+context/          # Zenon research documentation (98 Markdown files)
+data/             # Personality configuration
+static/           # Frontend assets (HTML, CSS, JS)
+zenon_ai.py       # Core Q&A engine (embedding, search, answer generation)
+web_app.py        # FastAPI web server
+```
+
+## Common Commands
+
+```bash
+# Install dependencies
+pip install -r requirements-web.txt
+
+# Run development server
+python web_app.py
+
+# Run with Docker
+docker-compose up
+
+# Production deployment
+docker-compose -f docker-compose.prod.yml up -d
+```
+
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| `zenon_ai.py` | Core Q&A engine: loads Markdown docs, creates embeddings, handles search and answer generation |
+| `web_app.py` | FastAPI server with rate limiting, session management, health checks |
+| `data/zenon_personality.md` | AI personality and response guidelines |
+| `static/index.html` | Main web interface |
+| `.env.example` | Configuration template |
+
+## Environment Variables
+
+Key settings in `.env`:
+- `OPENAI_API_KEY` - Required for embeddings and chat
+- `CONTEXT_DIR` - Path to documentation (default: `context`)
+- `ZENON_PERSONALITY_FILE` - Path to personality file
+- `REDIS_URL` - Redis connection for rate limiting
+
+## Documentation Knowledge Base
+
+All research documents are in `context/`. Key document types:
 
 **Core Team Papers (Normative):**
-- `1_ZENON_LIGHTPAPER_(CORE_TEAM).md` - Original 2018 lightpaper
-- `2_ZENON_WHITEPAPER_(CORE_TEAM).md` - Core whitepaper
+- `1_ZENON_LIGHTPAPER_(CORE_TEAM).md`, `2_ZENON_WHITEPAPER_(CORE_TEAM).md`
 
-**Greenpaper Series (Community-authored, Non-normative):**
-- `ZENON_GREENPAPER.md` - Main verification-first architecture paper
-- `0x00_greenpaper_series_bounded_verification.md` through `0x10_*.md` - Extended topics
+**Greenpaper Series (Community-authored):**
+- `ZENON_GREENPAPER.md` and `0x00` through `0x10` series
 
-**Architecture Documents:**
-- `architecture-overview.md` - High-level system overview
-- `node-architecture.md` - Node roles (Pillars, Sentinels, Supervisors, Sentries)
-- `pillars.md`, `sentinel-*.md`, `supervisor-layer.md` - Layer specifications
-
-**Research Topics:**
-- Bitcoin SPV integration: `bitcoin-*.md`, `spv-*.md` files
-- Light clients: `light-clients-verification.md`, `browser-light-client-*.md`
-- Applications: `01_decentralized_identity_final.md`, `02_encrypted_messenger_research.md`
-- State management: `minimal_state_frontier_*.md`, `state-proof-bundles.md`
+**Architecture/Research:**
+- Node architecture, Bitcoin SPV integration, light clients, state management
 
 ## Key Concepts
 
-**Dual-Ledger Architecture:**
-- Account-chain layer: parallel, asynchronous execution per address
-- Momentum chain layer: global sequential ordering via cryptographic commitments
-
-**Core Innovations:**
-- Bounded Verification: verification under explicit resource constraints (storage, bandwidth, computation)
-- Proof-Native Applications (zApps): correctness via cryptographic proofs, not execution replay
-- Composable External Verification (CEV): trustless validation of external facts (e.g., Bitcoin SPV)
-- Application Contract Interfaces (ACIs): deterministic, schema-defined interfaces instead of general-purpose VMs
-
-**Node Roles:**
-- Pillars: consensus/finality layer, sign momentums
-- Sentinels: verification and filtering layer
-- Sentries: execution and proof-serving layer
-- Supervisors: aggregation and coordination layer
-
-## Document Status Markers
-
-Many documents include status markers indicating their authority level:
-- "Community-authored greenpaper (non-normative, non-official)"
-- "Research Draft — Not a Formal Specification"
-- "Pre-prototype draft"
-
-## Working with This Repository
-
-When asked about Zenon concepts, cross-reference multiple documents as topics often span several files. The greenpaper series (`0x00` through `0x10`) builds progressively on bounded verification concepts.
+- **Dual-Ledger Architecture:** Account-chains (parallel execution) + Momentum chain (global ordering)
+- **Bounded Verification:** Verification under explicit resource constraints
+- **zApps:** Proof-native applications
+- **CEV:** Composable External Verification (e.g., Bitcoin SPV)
+- **ACIs:** Application Contract Interfaces
