@@ -6,9 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a **documentation-only repository** containing technical research papers, specifications, and architectural documents for **Zenon: The Network of Momentum (NoM)**—a distributed ledger protocol based on proof-of-momentum consensus.
 
-There is no source code, build system, or testing infrastructure. All files are Markdown documentation.
+There is no source code, build system, or testing infrastructure. All documentation files are in the `context/` folder.
 
 ## Document Hierarchy
+
+All documents are located in `context/`.
 
 **Core Team Papers (Normative):**
 - `1_ZENON_LIGHTPAPER_(CORE_TEAM).md` - Original 2018 lightpaper
