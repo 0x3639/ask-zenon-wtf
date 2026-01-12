@@ -1,0 +1,93 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient background -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="50%" style="stop-color:#0d1117"/>
+      <stop offset="100%" style="stop-color:#0a0f14"/>
+    </linearGradient>
+
+    <!-- Accent gradient -->
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d98b"/>
+      <stop offset="100%" style="stop-color:#00b4d8"/>
+    </linearGradient>
+
+    <!-- Glow filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtle noise texture -->
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.05"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" mode="overlay"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Abstract network nodes - representing momentum/network -->
+  <g opacity="0.15">
+    <!-- Connection lines -->
+    <line x1="100" y1="150" x2="300" y2="280" stroke="#00d98b" stroke-width="1"/>
+    <line x1="300" y1="280" x2="200" y2="450" stroke="#00d98b" stroke-width="1"/>
+    <line x1="300" y1="280" x2="500" y2="200" stroke="#00d98b" stroke-width="1"/>
+    <line x1="900" y1="100" x2="1050" y2="250" stroke="#00b4d8" stroke-width="1"/>
+    <line x1="1050" y1="250" x2="950" y2="400" stroke="#00b4d8" stroke-width="1"/>
+    <line x1="1050" y1="250" x2="1150" y2="350" stroke="#00b4d8" stroke-width="1"/>
+    <line x1="150" y1="500" x2="350" y2="550" stroke="#00d98b" stroke-width="1"/>
+    <line x1="850" y1="480" x2="1000" y2="520" stroke="#00b4d8" stroke-width="1"/>
+
+    <!-- Nodes -->
+    <circle cx="100" cy="150" r="4" fill="#00d98b"/>
+    <circle cx="300" cy="280" r="6" fill="#00d98b"/>
+    <circle cx="200" cy="450" r="3" fill="#00d98b"/>
+    <circle cx="500" cy="200" r="4" fill="#00d98b"/>
+    <circle cx="900" cy="100" r="4" fill="#00b4d8"/>
+    <circle cx="1050" cy="250" r="6" fill="#00b4d8"/>
+    <circle cx="950" cy="400" r="3" fill="#00b4d8"/>
+    <circle cx="1150" cy="350" r="4" fill="#00b4d8"/>
+    <circle cx="150" cy="500" r="3" fill="#00d98b"/>
+    <circle cx="350" cy="550" r="4" fill="#00d98b"/>
+    <circle cx="850" cy="480" r="3" fill="#00b4d8"/>
+    <circle cx="1000" cy="520" r="4" fill="#00b4d8"/>
+  </g>
+
+  <!-- Central content area -->
+  <g transform="translate(600, 280)">
+    <!-- Decorative accent line above -->
+    <rect x="-60" y="-80" width="120" height="3" rx="1.5" fill="url(#accent)" filter="url(#glow)"/>
+
+    <!-- Main title -->
+    <text x="0" y="0" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="72" font-weight="700" fill="#ffffff" letter-spacing="-1">
+      Ask Zenon
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="60" text-anchor="middle" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" fill="#8b949e" letter-spacing="0.5">
+      AI-Powered Network of Momentum Research
+    </text>
+
+    <!-- Decorative accent line below -->
+    <rect x="-60" y="100" width="120" height="3" rx="1.5" fill="url(#accent)" filter="url(#glow)"/>
+  </g>
+
+  <!-- Domain in corner -->
+  <text x="1160" y="600" text-anchor="end" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="18" fill="#4a5568">
+    ask.zenon.wtf
+  </text>
+
+  <!-- Subtle corner accents -->
+  <path d="M0 0 L80 0 L0 80 Z" fill="url(#accent)" opacity="0.1"/>
+  <path d="M1200 630 L1120 630 L1200 550 Z" fill="url(#accent)" opacity="0.1"/>
+</svg>
